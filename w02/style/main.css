@@ -1,0 +1,58 @@
+/* h1 {
+    font-size: 100px;
+    font-weight: normal;
+    font-weight: lighter;
+    font-family: Caslon;
+    color:gold
+}
+
+
+p {
+    font-family: Papyrus;
+    color:rgb(12, 169, 91)
+}
+
+ul {
+    color:rgb(12, 169, 91)
+}
+
+h3 {
+    color:rgb(12, 169, 91)
+}
+
+
+body{
+    background-color:red;
+} */
+
+.Q_n_A{
+    width: 500px;
+    margin: 250px;
+}
+
+.Question{
+    font-weight:bolder;
+    font-family: papyrus;
+    font-size: 20pt;
+    color:; 
+}
+
+
+.Answer{
+    font-family:Caslon;
+    font-size: 28pt;
+    color:rgb(0, 156, 63);
+}
+
+body{
+    background-color:azure;
+}
+
+li {
+    color:rgb(0, 156, 63);
+    font-size: 28pt;
+}
+
+h1 {
+    color:blue; 
+}
