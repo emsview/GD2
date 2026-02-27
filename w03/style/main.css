@@ -1,11 +1,39 @@
-.header {
-    min-height:400px;
-    background:red;
+
+.rectangle {
+    position:absolute;
+    background: red;
+    width: 150px;
+    height: 315px;
+    
+} 
+
+
+.rectangle_2 {
+    position:absolute;
+    background: rgb(53, 38, 255);
+    width: 150px;
+    height: 315px;
+    right: 590px;
+} 
+
+.triangle-up {
+    position:absolute;
+    width: 0;
+    height: 0;
+    border-left: 0px solid transparent;
+    border-right: 120px solid transparent;
+    border-bottom: 260px solid rgb(206, 187, 156);
+    right: 620px;
 }
 
-.square {
-    background:blue;
-    width:300px;
-    height:300px;
-    border:1px solid red;
-}
+.oval {
+    position:absolute;
+      width: 150px;
+      height: 100px;
+      background: rgb(206, 187, 156);
+      border-radius: 100px / 70px;
+      right: 620px;
+      bottom: 700px;
+    }
+  
+    
