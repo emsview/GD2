@@ -5,7 +5,7 @@
     box-sizing: border-box;
     font-family: "Martian Mono", monospace;
     color: rgb(224, 15, 22);
-    font-size: 30pt;
+    font-size: 20pt;
 }
 
 body {
@@ -27,7 +27,7 @@ body {
 .navbar > ul {
     display: flex;
     list-style-type: none;
-    gap: 760px;
+    gap: 310px;
 }
 
 #logo {
@@ -53,7 +53,7 @@ body {
 /* Main Headers */
 h2 {
     margin-top: 400px;
-    font-size: 250pt;
+    font-size: 100pt;
     font-weight: 500;
     text-align: center;
 }
@@ -74,7 +74,7 @@ h3 a{
 /* Card Header */
 h4{
     margin-top: 120px;
-    font-size: 100pt;
+    font-size: 60pt;
     text-align: center;
     font-weight: 400;
 
@@ -84,131 +84,28 @@ h4{
 h5 {
     text-align: right;
     margin-top: 80px;
-    margin-right: 2700px;
-
-}
-
-p {
-    font-family: "Inter", sans-serif;
-    color: black;
-    font-size: 30pt;
-    text-align: justify;
-    /* margin-left: 1025px; */
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Martian Mono", monospace;
-    color: rgb(224, 15, 22);
-    font-size: 30pt;
-}
-
-body {
-    min-height: 100vh; 
-}
-
-/* navigation bar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
-    position: fixed;
-    top: 50px;
-    left: 30px;
-    right: 30px; 
-    padding: 16px 32px;
-}
-
-.navbar > ul {
-    display: flex;
-    list-style-type: none;
-    gap: 760px;
-}
-
-#logo {
-    font-weight: bold;
-    text-decoration: none;
-}
-
-#logo:hover {
-    cursor: pointer;
-}
-
-.underline-text {
-    text-decoration-color: transparent;
-    text-underline-offset: 10px;
-    transition-property: text-decoration-color;
-    transition-duration: 0.5s;
-}
-
-.underline-text:hover {
-    text-decoration-color:rgb(224, 15, 22);
-}
-
-/* Main Headers */
-h2 {
-    margin-top: 400px;
-    font-size: 250pt;
-    font-weight: 500;
-    text-align: center;
-}
-
-/* Subheader */
-h3 {
-    text-align: left;
-    margin-top: 350px;
-    margin-left: 80px;
-}
-
-h3 a{
-    /* text-decoration: none; */
-    font-size: 50pt;
-    font-weight: 450;
-}
-
-/* Card Header */
-h4{
-    margin-top: 120px;
-    font-size: 100pt;
-    text-align: center;
-    font-weight: 400;
-
-}
-
-/* CARD SUBHEADS */
-h5 {
-    text-align: right;
-    margin-top: 80px;
-    margin-right: 2700px;
+    margin-right: 1390px;
 
 }
 
 h6 {
     text-align: center;
-    font-size: 30pt;
-    margin-top: 100px;
+    margin-top: 80px;
+    font-size: 16pt;
+    margin-left: 180px;
+    margin-right: 180px;
     font-weight: 300;
-}
 
-.p1 {
-    font-family: "Inter", sans-serif;
-    color: black;
-    font-size: 30pt;
-    margin-top: 300px;
 }
 
 p {
     font-family: "Inter", sans-serif;
     color: black;
-    font-size: 30pt;
-    text-align: left;
-    margin-left: 1025px;
-    margin-top: -50px;
-    max-width: 1500px;
+    font-size: 16pt;
+    text-align: justify;
+    margin-left: 450px;
+    margin-top: -30px;
 }
-
 
 
 /* SUIT GRID */
@@ -221,23 +118,23 @@ p {
 }
 .major-arcana img {
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     height: auto;
     display: block;
     border-radius: 5px;
 }
 
-/* Cards in Suits Grid */
+/* Cards in Suits upright/reversed */
 .card-display {
     display: flex;
-    gap: 150px;
+    gap: 100px;
     justify-content: center;
 }
 
 .card-display img {
     margin-top: 200px;
-    width: 700px;
-    height: 1200px;
+    width: 400px;
+    height: 700px;
     display: block;
 }
 
@@ -251,13 +148,14 @@ p {
 .all-cards {
     display: grid;
     margin-left: 60px;
+    margin-right:60px;
     grid-template-columns: repeat(6, 1fr);
     gap: 60px;
     padding: 20px;
 }
 .all-cards img {
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     height: auto;
     display: block;
     border-radius: 5px;
