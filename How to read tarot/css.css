@@ -1,0 +1,273 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Martian Mono", monospace;
+    color: rgb(224, 15, 22);
+    font-size: 30pt;
+}
+
+body {
+    min-height: 100vh; 
+}
+
+/* navigation bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    position: fixed;
+    top: 50px;
+    left: 30px;
+    right: 30px; 
+    padding: 16px 32px;
+}
+
+.navbar > ul {
+    display: flex;
+    list-style-type: none;
+    gap: 760px;
+}
+
+#logo {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#logo:hover {
+    cursor: pointer;
+}
+
+.underline-text {
+    text-decoration-color: transparent;
+    text-underline-offset: 10px;
+    transition-property: text-decoration-color;
+    transition-duration: 0.5s;
+}
+
+.underline-text:hover {
+    text-decoration-color:rgb(224, 15, 22);
+}
+
+/* Main Headers */
+h2 {
+    margin-top: 400px;
+    font-size: 250pt;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Subheader */
+h3 {
+    text-align: left;
+    margin-top: 350px;
+    margin-left: 80px;
+}
+
+h3 a{
+    /* text-decoration: none; */
+    font-size: 50pt;
+    font-weight: 450;
+}
+
+/* Card Header */
+h4{
+    margin-top: 120px;
+    font-size: 100pt;
+    text-align: center;
+    font-weight: 400;
+
+}
+
+/* CARD SUBHEADS */
+h5 {
+    text-align: right;
+    margin-top: 80px;
+    margin-right: 2700px;
+
+}
+
+p {
+    font-family: "Inter", sans-serif;
+    color: black;
+    font-size: 30pt;
+    text-align: justify;
+    /* margin-left: 1025px; */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Martian Mono", monospace;
+    color: rgb(224, 15, 22);
+    font-size: 30pt;
+}
+
+body {
+    min-height: 100vh; 
+}
+
+/* navigation bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    position: fixed;
+    top: 50px;
+    left: 30px;
+    right: 30px; 
+    padding: 16px 32px;
+}
+
+.navbar > ul {
+    display: flex;
+    list-style-type: none;
+    gap: 760px;
+}
+
+#logo {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#logo:hover {
+    cursor: pointer;
+}
+
+.underline-text {
+    text-decoration-color: transparent;
+    text-underline-offset: 10px;
+    transition-property: text-decoration-color;
+    transition-duration: 0.5s;
+}
+
+.underline-text:hover {
+    text-decoration-color:rgb(224, 15, 22);
+}
+
+/* Main Headers */
+h2 {
+    margin-top: 400px;
+    font-size: 250pt;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Subheader */
+h3 {
+    text-align: left;
+    margin-top: 350px;
+    margin-left: 80px;
+}
+
+h3 a{
+    /* text-decoration: none; */
+    font-size: 50pt;
+    font-weight: 450;
+}
+
+/* Card Header */
+h4{
+    margin-top: 120px;
+    font-size: 100pt;
+    text-align: center;
+    font-weight: 400;
+
+}
+
+/* CARD SUBHEADS */
+h5 {
+    text-align: right;
+    margin-top: 80px;
+    margin-right: 2700px;
+
+}
+
+h6 {
+    text-align: center;
+    font-size: 30pt;
+    margin-top: 100px;
+    font-weight: 300;
+}
+
+.p1 {
+    font-family: "Inter", sans-serif;
+    color: black;
+    font-size: 30pt;
+    margin-top: 300px;
+}
+
+p {
+    font-family: "Inter", sans-serif;
+    color: black;
+    font-size: 30pt;
+    text-align: left;
+    margin-left: 1025px;
+    margin-top: -50px;
+    max-width: 1500px;
+}
+
+
+
+/* SUIT GRID */
+.major-arcana {
+    display: grid;
+    margin-left: 60px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 60px;
+    padding: 20px;
+}
+.major-arcana img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+}
+
+/* Cards in Suits Grid */
+.card-display {
+    display: flex;
+    gap: 150px;
+    justify-content: center;
+}
+
+.card-display img {
+    margin-top: 200px;
+    width: 700px;
+    height: 1200px;
+    display: block;
+}
+
+.suit-section {
+    margin-bottom: 300px;
+}
+
+
+
+/* SUIT GRID */
+.all-cards {
+    display: grid;
+    margin-left: 60px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 60px;
+    padding: 20px;
+}
+.all-cards img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+}
+
+
+#cardSearch {
+    width: 600px;
+    padding: 15px;
+    font-size: 25px;
+    margin: 200px auto;
+    display: block;
+}
