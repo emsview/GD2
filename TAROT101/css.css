@@ -9,7 +9,8 @@
 }
 
 body {
-    min-height: 100vh; 
+    min-height: 100vh;
+    padding-bottom: 300px;
 }
 
 /* navigation bar */
@@ -17,17 +18,24 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center; 
-    position: fixed;
-    top: 50px;
-    left: 30px;
-    right: 30px; 
-    padding: 16px 32px;
+    position: sticky;
+    padding: 64px 64px;
 }
 
 .navbar > ul {
     display: flex;
     list-style-type: none;
     gap: 310px;
+}
+
+.list ol, 
+.list li{
+    font-family: "Inter", sans-serif;
+    color: black;
+    font-size: 16pt;
+    text-align: left;
+    margin-left: 250px;
+
 }
 
 #logo {
@@ -52,7 +60,7 @@ body {
 
 /* Main Headers */
 h2 {
-    margin-top: 400px;
+    margin-top: 100px;
     font-size: 100pt;
     font-weight: 500;
     text-align: center;
@@ -61,7 +69,7 @@ h2 {
 /* Subheader */
 h3 {
     text-align: left;
-    margin-top: 350px;
+    margin-top: 200px;
     margin-left: 80px;
 }
 
@@ -85,7 +93,8 @@ h5 {
     text-align: right;
     margin-top: 80px;
     margin-right: 1390px;
-
+    font-weight: 650;
+    font-size: 20pt;
 }
 
 h6 {
@@ -94,8 +103,13 @@ h6 {
     font-size: 16pt;
     margin-left: 180px;
     margin-right: 180px;
-    font-weight: 300;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+}
 
+#quiz h5 {
+    text-align: center;
+    margin-right: 0;
 }
 
 p {
@@ -134,8 +148,8 @@ p {
 
 .card-display img {
     margin-top: 200px;
-    width: 400px;
-    height: 700px;
+    width: 300px;
+    height: 600px;
     display: block;
 }
 
@@ -155,7 +169,7 @@ p {
     padding: 20px;
 }
 .all-cards img {
-    width: 100%;
+    width: 75%;
     max-width: 400px;
     height: auto;
     display: block;
@@ -163,10 +177,66 @@ p {
 }
 
 
-#cardSearch {
+/* #cardSearch {
     width: 600px;
     padding: 15px;
     font-size: 25px;
-    margin: 200px auto;
+    margin: 150px auto;
     display: block;
+} */
+
+.gif {
+    padding: 16px 64px;
+
+}
+
+/* .gif2 {
+top: 20px;
+  right: 64px;
+} */
+
+.overlay h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 0px;
+    white-space: nowrap;
+}
+
+.suits-icon img {
+    width: 10%;
+    left: 275px;
+    position: absolute;
+}
+
+button {
+    font-family: "Inter", sans-serif;
+    padding:0.5rem 1rem;
+    /* max-width: 800px; */
+    /* left: 200px; */
+    /* margin-right: 20px; */
+    margin-bottom: 20px;
+    background-color:rgb(243, 236, 236);
+    color: rgb(224, 15, 22);
+    text-decoration: solid;
+    font-size: 14pt;
+    border:none;
+    cursor:pointer;
+    border-radius: 25px;
+    display: block;
+    flex-wrap: wrap;
+    /* gap: 10px; */
+}
+
+button:hover {
+    background:rgb(198, 224, 252);;
+}
+
+.preamble {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+
 }

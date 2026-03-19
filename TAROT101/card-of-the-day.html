@@ -15,22 +15,22 @@
 <body>
 <header>
     <nav class="navbar">
-        <h1><a id="logo">TAROT 101</a></h1>
+        <h1><a id="logo" href="tarot101.html">TAROT 101</a></h1>
         <ul>
-            <li><a class="underline-text" href="#">Intro</a></li>
+            <li><a class="underline-text" href="intro.html">Intro</a></li>
             <li><a class="underline-text" href="all-cards.html">All Cards</a></li>
             <li><a class="underline-text" href="card-of-the-day.html">Card of the Day</a></li>
         </ul>
     </nav>
 </header>
 
-<h2>CARD OF <br>THE DAY</h2>
+<h2>CARD OF <br> THE DAY</h2>
 
 <h6>Practice your reading knowledge</h6>
 
  <div class="card-display">
         <img src="Tarot Cards/King of Swords.png" alt="King of Swords">
-        <img src="Tarot Cards/King of Swords Reversed.png" alt="King of Swords Reversed">
+        <img src="Tarot Cards Reversed /King of Swords Reversed.png" alt="King of Swords Reversed">
     </div>
 
 <h4>KING OF SWORDS</h4>
@@ -55,4 +55,37 @@
 </div>
 
 
+<div id="quiz">
+<h5>UPRIGHT MEANING</h5>
+</div>
+
+<!-- <div class="preamble">
+<button id="preamble-btn-1">Emotional balance and compassionate diplomacy</button>
+<button id="preamble-btn-2">Careful financial planning and stability</button>
+<button id="preamble-btn-3">Visionary leadership and bold initiative</button>
+<button id="preamble-btn-4">Isolation and spiritual introspection</button>
+</div> -->
+<div class="preamble">
+<button>Emotional balance and compassionate diplomacy</button>
+<button>Careful financial planning and stability</button>
+<button data-correct="true">Visionary leadership and bold initiative</button>
+<button>Isolation and spiritual introspection</button>
+</div>
+
+<div id="quiz">
+<h5>REVERSED MEANING</h5>
+</div>
+
+<div class="preamble">
+<button>Fear of emotional vulnerability</button>
+<button data-correct="true">Arrogance, impulsiveness, or misuse of power</button>
+<button>Financial instability or poor investment</button>
+<button>Avoidance of conflict and indecision</button>
+</div>
+
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="tarot101.js"></script> 
+
+</body>
