@@ -14,6 +14,7 @@
 
 <body>
 <header>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <nav class="navbar">
         <h1><a id="logo" href="tarot101.html">TAROT 101</a></h1>
         <ul>
@@ -28,64 +29,53 @@
 
 <h6>Practice your reading knowledge</h6>
 
- <div class="card-display">
-        <img src="Tarot Cards/King of Swords.png" alt="King of Swords">
-        <img src="Tarot Cards Reversed /King of Swords Reversed.png" alt="King of Swords Reversed">
-    </div>
+<div class="card-display">
+    <img id="card-img" src="" alt="">
+    <img id="card-img-reversed" src="" alt="">
+</div>
 
-<h4>KING OF SWORDS</h4>
+<h4 id="card-title"></h4>
 
-<h5 >ABOUT THE CARD</h5> 
-<p>The King of Wands represents confident leadership and bold creative direction. Embodying ambition and inspiring those around them through action and intent. </p>
+<h5>ABOUT THE CARD</h5>
+<p id="about-card"></p>
 
-<h5>SUIT</h5>
-<p>Belonging to the suit of Wands (fire), this card holds drive, expansion, and leadership energy. </p>
+<h5 id="suit-title">SUIT</h5>
+<p id="suit"></p>
 
 <h5>IMAGERY</h5>
-<p> Seen as a king on a throne, he holds a wand symbolizing life and creativity. The King is adorned with lions and salamanders, signifying strength and drive. His body is positioned towards the left, appearing to reflect on past instances to confidently inform and execute his next move. </p>
+<p id="card-imagery"></p>
 
 <h5>UPRIGHT MEANING</h5>
-<p>Leadership, honour, ambition, drive, confidence.</p>
+<p class="card-text-upright" id="upright-meaning"></p>
 
 <h5>REVERSED MEANING</h5>
-<p>Impulsiveness, haste, high expectations, reluctance, loss of direction. </p>
+<p class="card-text-reversed" id="reversed-meaning"></p>
 
 <h2>QUIZ</h2>
 <h6>Choose the correct corresponding description</h6>
-</div>
 
 
-<div id="quiz">
+
 <h5>UPRIGHT MEANING</h5>
-</div>
 
-<!-- <div class="preamble">
-<button id="preamble-btn-1">Emotional balance and compassionate diplomacy</button>
-<button id="preamble-btn-2">Careful financial planning and stability</button>
-<button id="preamble-btn-3">Visionary leadership and bold initiative</button>
-<button id="preamble-btn-4">Isolation and spiritual introspection</button>
-</div> -->
-<div class="preamble">
-<button>Emotional balance and compassionate diplomacy</button>
-<button>Careful financial planning and stability</button>
-<button data-correct="true">Visionary leadership and bold initiative</button>
-<button>Isolation and spiritual introspection</button>
-</div>
+<div class="preamble" id="upright-quiz"></div>
 
-<div id="quiz">
 <h5>REVERSED MEANING</h5>
-</div>
 
-<div class="preamble">
-<button>Fear of emotional vulnerability</button>
-<button data-correct="true">Arrogance, impulsiveness, or misuse of power</button>
-<button>Financial instability or poor investment</button>
-<button>Avoidance of conflict and indecision</button>
-</div>
+<div class="preamble" id="reversed-quiz"></div>
 
 </section>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="tarot101.js"></script> 
+<script src="tarot101.js"></script>
+<script src="Scripts/Card.js"></script>
+
+
+<div class="spacer"></div>
+<footer> 
+    <div class="copy"> 
+    emiliev@ocadu.ca | © 2026 TAROT 101 | All rights reserved.
+    </div>
+</footer>
 
 </body>
