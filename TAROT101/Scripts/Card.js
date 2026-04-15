@@ -116,6 +116,7 @@ function makeCard(name, upright, reversed, about, imagery, suit = "", fileKey) {
         about,
         imagery,
         suit,
+        fileKey,
         `Tarot Cards/${fileKey}.jpg`,
         `Tarot Cards Reversed/${fileKey} Reversed.jpg`
     );
