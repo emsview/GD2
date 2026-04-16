@@ -1,4 +1,5 @@
-// CARD CLASS
+// https://www.w3schools.com/java/java_constructors.asp 
+// using a constructor and class to get the information for each card for the CARD OF THE DAY html page (creates the structure) 
 class Card {
     constructor(name, uprightMeaning, reversedMeaning, about, imagery, suit, img, reversedImg) {
         this.name = name;
@@ -10,57 +11,55 @@ class Card {
         this.img = img;
         this.reversedImg = reversedImg;
     }
-
-    getMeaning(isReversed) {
-        return isReversed ? this.reversedMeaning : this.uprightMeaning;
-    }
 }
 
 
 
-// HELPERS
-function formatName(name) {
-    return name.toLowerCase().replace(/\s+/g, "-");
-}
-
+// shuffle array for all cards
 function shuffle(array) {
-    return array.sort(() => Math.random() - 0.5);
+    return array.sort(() => Math.random() - 0.5); // randomizes the card array to select one for each day
 }
 
-// CARD OF THE DAY
+// https://www.w3schools.com/js/js_dates.asp
+// function to change the card every day (gets the current day and tells it to display a new set of information when it's a new day)
 function getCardOfTheDay() {
     const d = new Date();
-    const seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
-    return cards[seed % cards.length];
+    const seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate(); // gets the date and generates a number 
+    return cards[seed % cards.length]; // % uses the generated number to retrieve a random card of the day through the array
 }
 
 
-// QUIZ LOGIC
+// retrieving data for the quiz section
 function getRandomMeanings(correctMeaning, type) {
-    const meanings = cards.map(card =>
-        type === "upright" ? card.uprightMeaning : card.reversedMeaning
+    const meanings = cards.map(
+        card => type === "upright" ? card.uprightMeaning : card.reversedMeaning // using === operator to get the upright and reversed meaning of the card of the day https://www.w3schools.com/js/js_comparisons.asp
     );
 
-    const filtered = meanings.filter(m => m !== correctMeaning);
-    const wrong = shuffle(filtered).slice(0, 3);
+    const filtered = meanings.filter(m => m !== correctMeaning); // get's the correctMeaning for the quiz
+    const wrong = shuffle(filtered).slice(0, 3); // randomly selects three upright meanings from different cards in the array (for the answers of the quiz that will be wrong)
 
     return shuffle([correctMeaning, ...wrong]);
 }
 
+// https://www.w3schools.com/js/js_htmldom_html.asp
+// https://www.w3schools.com/Jsref/met_node_appendchild.asp
+// https://www.w3schools.com/jsref/met_document_queryselector.asp
+// creating buttons for quiz
 function renderQuiz(id, correct, type) {
-    const options = getRandomMeanings(correct, type);
-    const container = document.getElementById(id);
+    const options = getRandomMeanings(correct, type); // creates an "array" of options (answers) and gets the correct answer
+    const container = document.getElementById(id); // linking to html
 
-    container.innerHTML = "";
+    container.innerHTML = ""; // resets buttons before rendering the new options (stops new buttons from appearing)
 
     options.forEach(opt => {
         const btn = document.createElement("button");
         btn.innerText = opt;
 
         if (opt === correct) {
-            btn.dataset.correct = "true";
+            btn.dataset.correct = "true"; // identifies the correct answer
         }
 
+        // make button green if correct, make button red and make the right answer green when wrong
         btn.onclick = () => {
             const buttons = container.querySelectorAll("button");
 
@@ -71,15 +70,14 @@ function renderQuiz(id, correct, type) {
                     b.style.background = "rgb(243, 182, 182)";
                 }
 
-                b.disabled = true;
+                b.disabled = true; // cannot click buttons once correct answer is revealed
             });
         };
 
         container.appendChild(btn);
     });
 }
-
-// DISPLAY CARD
+// Load / retrieve information for card subheaders 
 function displayCard() {
     const c = getCardOfTheDay();
 
@@ -108,8 +106,8 @@ function displayCard() {
     renderQuiz("reversed-quiz", c.reversedMeaning, "reversed");
 }
 
-// CARD FACTORY
-function makeCard(name, upright, reversed, about, imagery, suit = "", fileKey) {
+// function that retrieves the information to give to the constructor to display on the web. fileKey used to retrieve the correct jpg file for my naming conventions. 
+function generateCard(name, upright, reversed, about, imagery, suit = "", fileKey) {
     return new Card(
         name,
         upright,
@@ -117,12 +115,12 @@ function makeCard(name, upright, reversed, about, imagery, suit = "", fileKey) {
         about,
         imagery,
         suit,
-        `Tarot Cards/${fileKey}.jpg`,
-        `Tarot Cards Reversed/${fileKey} Reversed.jpg`
+        `Tarot Cards/${fileKey}.jpg`, // naming function to retrieve the correct jpg file
+        `Tarot Cards Reversed/${fileKey} Reversed.jpg` // same thing but for the reversed jpgs.
     );
 }
 
-// SUIT DESCRIPTIONS
+// Since only the Major Arcana have unique meanings to their suit, I added this constant for each Minor Arcana suit to repeat the description instead of having to imput it in every card's description. This allows user's to become more familiar with the suit's meaning with repetition overtime.
 const SUITS = {
     wands: "Wands represent fire. Often these cards are associated with determination, strength, ambition, and action, to name a few. It symbolizes masculine energy, brought forth through fire, and often appears when a thought is forming or when you are seeking solution. It is the first stage of development. The negatives could reveal impulsiveness, lack of direction, and egotistical behaviour.",
     cups: "Cups represent water, the element of emotion and intuition. This suit centres around relationships, vulnerability, creativity, and inner awareness. It reflects the emotional undercurrent of a situation. Cups often appear when connection, love, or personal reflection is needed. They invite empathy and imagination, but can reveal escapism, illusion, or emotional overwhelm.",
@@ -130,12 +128,12 @@ const SUITS = {
     pentacles: "Pentacles represent earth and the tangible aspects of life. In terms of work, money, health, and long term stability, this suit focuses on building, investing, and maintaining what is real and practical. Pentacles reflect patience and progress, emphasizing growth over time. In imbalance, they signal material obsession, stagnation, or fear around resources and control."
 };
 
-// CARD DATA
+// Contains all the data for each card that gives the information to the generateCard function.
 const cards = [
 
 // MAJOR ARCANA
 
-makeCard(
+generateCard(
     "THE FOOL",
     "Spontaneity, limitless potential, adventure, and optimism.",
     "Recklessness, folly, stagnancy, fear and eagerness.",
@@ -144,16 +142,16 @@ makeCard(
     "As the 0 card of the Major Arcana, The Fool marks the start of a new journey.",
     "The Fool"
 ),
-makeCard(
+generateCard(
     "THE MAGICIAN",
     "Action, focus, initiative, skill.",
     "Distraction, manipulation, untapped potential.",
-    "The Magician is about using what you've got to make things happen. It's the spark of creativity and initiative, showing that you have the skills and focus needed to turn ideas into reality.",
+    "The Magician is about using what you've got to generate things happen. It's the spark of creativity and initiative, showing that you have the skills and focus needed to turn ideas into reality.",
     "He stands with one hand pointing toward the sky and the other toward the earth, connecting the spiritual and the physical. The table in front of him displays all four suits of the Tarot, reminding us that every tool needed to succeed is already within reach.",
     "Card 1 of the Major Arcana, representing action, resourcefulness, and manifestation.",
     "The Magician"
 ),
-makeCard(
+generateCard(
     "THE HIGH PRIESTESS",
     "Intuition, secrets, reflection, inner knowledge.",
     "Ignoring intuition, hidden truths emerging, feeling disconnected.",
@@ -162,7 +160,7 @@ makeCard(
     "Card 2 of the Major Arcana, guiding us toward inner wisdom and hidden truths.",
     "The High Priestess"
 ),
-makeCard(
+generateCard(
     "THE EMPRESS",
     "Growth, nurturing, creativity, abundance.",
     "Neglect, creative blocks, dependency, overprotection.",
@@ -171,7 +169,7 @@ makeCard(
     "Card 3 of the Major Arcana, symbolizing fertility, creativity, and abundance.",
     "The Empress"
 ),
-makeCard(
+generateCard(
     "THE EMPEROR",
     "Structure, leadership, control, stability.",
     "Rigidity, domination, misuse of power, chaos.",
@@ -180,7 +178,7 @@ makeCard(
     "Card 4 of the Major Arcana, standing for leadership, order, and control.",
     "The Emperor"
 ),
-makeCard(
+generateCard(
     "THE HIEROPHANT",
     "Tradition, mentorship, guidance, learning.",
     "Breaking rules, unconventional thinking, challenging authority.",
@@ -189,16 +187,16 @@ makeCard(
     "Card 5 of the Major Arcana, connecting us to structured knowledge and spiritual guidance." ,
     "The Hierophant"
 ),
-makeCard(
+generateCard(
     "THE LOVERS",
     "Love, partnership, harmony, conscious choice.",
     "Conflict, imbalance, poor decisions, misaligned values.",
-    "The Lovers is about meaningful connections and choices of the heart. It can signal romance, partnership, or the need to make a choice that aligns with your values.",
+    "The Lovers is about meaningful connections and choices of the heart. It can signal romance, partnership, or the need to generate a choice that aligns with your values.",
     "A couple stands under an angel, bathed in warm light. Mountains and trees surround them, symbolizing stability and growth. The angel above suggests divine guidance and the importance of moral or heartfelt choices.",
     "Card 6 of the Major Arcana, emphasizing love, connection, and conscious decisions.",
     "The Lovers"
 ),
-makeCard(
+generateCard(
     "THE CHARIOT",
     "Determination, focus, victory, drive.",
     "Lack of control, scattered focus, obstacles, aggression.",
@@ -207,7 +205,7 @@ makeCard(
     "Card 7 of the Major Arcana, representing control, drive, and ambition.",
     "The Chariot"
 ),
-makeCard(
+generateCard(
     "STRENGTH",
     "Courage, patience, compassion, self-discipline.",
     "Self-doubt, impatience, weakness, losing control.",
@@ -216,7 +214,7 @@ makeCard(
     "Card 8 of the Major Arcana, symbolizing inner resilience and personal courage.",
     "Strength"
 ),
-makeCard(
+generateCard(
     "THE HERMIT",
     "Introspection, wisdom, guidance, reflection.",
     "Loneliness, avoidance, feeling lost, disconnect.",
@@ -225,7 +223,7 @@ makeCard(
     "Card 9 of the Major Arcana, emphasizing introspection and inner guidance.",
     "The Hermit"
 ),
-makeCard(
+generateCard(
     "WHEEL OF FORTUNE",
     "Change, cycles, destiny, opportunity.",
     "Setbacks, resistance to change, unpredictability, delays.",
@@ -234,7 +232,7 @@ makeCard(
     "Card 10 of the Major Arcana, symbolizing fate, cycles, and inevitable change.",
     "Wheel of Fortune"
 ),
-makeCard(
+generateCard(
     "JUSTICE",
     "Fairness, truth, accountability, balance.",
     "Bias, dishonesty, imbalance, avoiding responsibility.",
@@ -243,7 +241,7 @@ makeCard(
     "Card 11 of the Major Arcana, focusing on fairness, responsibility, and truth.",
     "Justice"
 ),
-makeCard(
+generateCard(
     "THE HANGED MAN",
     "Patience, insight, new perspective, letting go.",
     "Resistance, indecision, stagnation, missed opportunities.",
@@ -252,16 +250,16 @@ makeCard(
     "Card 12 of the Major Arcana, highlighting reflection, surrender, and patience.",
     "The Hanged Man"
 ),
-makeCard(
+generateCard(
     "DEATH",
     "Transformation, endings, renewal, letting go.",
     "Resistance, stagnation, fear of change, holding on.",
-    "Death symbolizes endings that make way for new beginnings. It's a reminder that transformation often comes through release, letting go of what no longer fits so life can move forward.",
+    "Death symbolizes endings that generate way for new beginnings. It's a reminder that transformation often comes through release, letting go of what no longer fits so life can move forward.",
     "A skeleton rides a pale horse across a landscape of change. Figures kneel or fall before it, representing the inevitability of endings. The sun rises behind, suggesting hope and the promise of fresh starts.",
     "Card 13 of the Major Arcana, representing transformation, endings, and renewal.",
     "Death"
 ),
-makeCard(
+generateCard(
     "TEMPERANCE",
     "Balance, harmony, patience, integration.",
     "Imbalance, excess, conflict, lack of direction.",
@@ -270,7 +268,7 @@ makeCard(
     "Card 14 of the Major Arcana, representing equilibrium, calm, and thoughtful action.",
     "Temperance"
 ),
-makeCard(
+generateCard(
     "THE DEVIL",
     "Bondage, temptation, restriction, materialism.",
     "Breaking free, awareness, release, reclaiming control.",
@@ -279,7 +277,7 @@ makeCard(
     "Card 15 of the Major Arcana, exploring bondage, desire, and self-awareness.",
     "The Devil"
 ),
-makeCard(
+generateCard(
     "THE TOWER",
     "Sudden change, disruption, revelation, liberation.",
     "Fear of change, delayed disaster, clinging to old structures.",
@@ -288,7 +286,7 @@ makeCard(
     "Card 16 of the Major Arcana, representing chaos, revelation, and liberation through crisis.",
     "The Tower"
 ),
-makeCard(
+generateCard(
     "THE STAR",
     "Hope, inspiration, renewal, clarity.",
     "Disappointment, discouragement, lost faith, disconnection.",
@@ -297,7 +295,7 @@ makeCard(
     "Card 17 of the Major Arcana, symbolizing healing, hope, and clarity.",
     "The Star"
 ),
-makeCard(
+generateCard(
     "THE MOON",
     "Illusion, intuition, subconscious guidance, uncertainty.",
     "Clarity breaking through, deception revealed, facing fears, misinterpretation.",
@@ -306,7 +304,7 @@ makeCard(
     "Card 18 of the Major Arcana, exploring hidden truths, intuition, and emotional insight.",
     "The Moon"
 ),
-makeCard(
+generateCard(
     "THE SUN",
     "Joy, clarity, success, vitality.",
     "Temporary setbacks, delays, diminished clarity or confidence.",
@@ -315,7 +313,7 @@ makeCard(
     "Card 19 of the Major Arcana, symbolizing accomplishment, clarity, and happiness.",
     "The Sun"
 ),
-makeCard(
+generateCard(
     "JUDGEMENT",
     "Awakening, self-evaluation, rebirth, transformation.",
     "Self-doubt, refusal to learn, delay, ignoring lessons.",
@@ -324,7 +322,7 @@ makeCard(
     "Card 20 of the Major Arcana, representing rebirth, accountability, and transformation.",
     "Judgement"
 ),
-makeCard(
+generateCard(
     "THE WORLD",
     "Completion, fulfillment, harmony, achievement.",
     "Delays, lack of closure, feeling stuck, unfinished business.",
@@ -338,7 +336,7 @@ makeCard(
 // WANDS
 
 
-makeCard(
+generateCard(
     "ACE OF WANDS",
     "Inspiration, new beginnings, creative energy, motivation.",
     "Creative block, lack of direction, delayed start, low energy.",
@@ -347,7 +345,7 @@ makeCard(
     SUITS.wands,
     "Ace of Wands"
 ),
-makeCard(
+generateCard(
     "TWO OF WANDS",
     "Planning, decisions, looking ahead, expansion.",
     "Fear of change, lack of planning, hesitation, limited vision.",
@@ -356,7 +354,7 @@ makeCard(
     SUITS.wands,
     "Two of Wands"
 ),
-makeCard(
+generateCard(
     "THREE OF WANDS",
     "Expansion, progress, foresight, waiting for results.",
     "Delays, setbacks, lack of progress, frustration.",
@@ -365,7 +363,7 @@ makeCard(
     SUITS.wands,
     "Three of Wands"
 ),
-makeCard(
+generateCard(
     "FOUR OF WANDS",
     "Celebration, stability, homecoming, joy.",
     "Instability, lack of harmony, tension, disrupted celebrations.",
@@ -374,7 +372,7 @@ makeCard(
     SUITS.wands,
     "Four of Wands"
 ),
-makeCard(
+generateCard(
     "FIVE OF WANDS",
     "Competition, tension, disagreement, chaos.",
     "Resolution, avoiding conflict, inner tension, imbalance.",
@@ -383,7 +381,7 @@ makeCard(
     SUITS.wands,
     "Five of Wands"
 ),
-makeCard(
+generateCard(
     "SIX OF WANDS",
     "Success, recognition, confidence, achievement.",
     "Self-doubt, lack of recognition, setbacks, insecurity.",
@@ -392,7 +390,7 @@ makeCard(
     SUITS.wands,
     "Six of Wands"
 ),
-makeCard(
+generateCard(
     "SEVEN OF WANDS",
     "Defense, perseverance, standing firm, resilience.",
     "Overwhelm, giving up, exhaustion, feeling attacked.",
@@ -401,16 +399,16 @@ makeCard(
     SUITS.wands,
     "Seven of Wands"
 ),
-makeCard(
+generateCard(
     "EIGHT OF WANDS",
     "Momentum, speed, communication, progress.",
     "Delays, miscommunication, slowing down, frustration.",
     "The Eight of Wands moves quickly. It often points to sudden progress, fast communication, or situations picking up speed without much pause.",
-    "Eight wands fly through the air across an open sky, angled as if in motion. There are no people in the scene, which makes the energy feel uninterrupted and direct, like nothing is standing in the way.",
+    "Eight wands fly through the air across an open sky, angled as if in motion. There are no people in the scene, which generates the energy feel uninterrupted and direct, like nothing is standing in the way.",
     SUITS.wands,
     "Eight of Wands"
 ),
-makeCard(
+generateCard(
     "NINE OF WANDS",
     "Resilience, endurance, persistence, caution.",
     "Burnout, defensiveness, exhaustion, giving up.",
@@ -419,7 +417,7 @@ makeCard(
     SUITS.wands,
     "Nine of Wands"
 ),
-makeCard(
+generateCard(
     "TEN OF WANDS",
     "Burden, stress, responsibility, hard work.",
     "Release, delegation, burnout, letting go.",
@@ -428,7 +426,7 @@ makeCard(
     SUITS.wands,
     "Ten of Wands"
 ),
-makeCard(
+generateCard(
     "PAGE OF WANDS",
     "Curiosity, exploration, inspiration, new ideas.",
     "Lack of direction, hesitation, creative blocks, uncertainty.",
@@ -437,7 +435,7 @@ makeCard(
     SUITS.wands,
     "Page of Wands"
 ),
-makeCard(
+generateCard(
     "KNIGHT OF WANDS",
     "Action, passion, confidence, adventure.",
     "Impulsiveness, recklessness, frustration, scattered energy.",
@@ -446,7 +444,7 @@ makeCard(
     SUITS.wands,
     "Knight of Wands"
 ),
-makeCard(
+generateCard(
     "QUEEN OF WANDS",
     "Confidence, independence, warmth, determination.",
     "Insecurity, jealousy, self-doubt, lack of confidence.",
@@ -455,7 +453,7 @@ makeCard(
     SUITS.wands,
     "Queen of Wands"
 ),
-makeCard(
+generateCard(
     "KING OF WANDS",
     "Leadership, vision, confidence, direction.",
     "Control issues, arrogance, impulsiveness, lack of direction.",
@@ -469,7 +467,7 @@ makeCard(
 // CUPS
 
 
-makeCard(
+generateCard(
     "ACE OF CUPS",
     "New feelings, connection, emotional openness, beginnings.",
     "Emotional block, holding back, disconnection, emptiness.",
@@ -478,7 +476,7 @@ makeCard(
     SUITS.cups,
     "Ace of Cups"
 ),
-makeCard(
+generateCard(
     "TWO OF CUPS",
     "Connection, partnership, harmony, mutual respect.",
     "Imbalance, disconnection, tension, miscommunication.",
@@ -487,7 +485,7 @@ makeCard(
     SUITS.cups,
     "Two of Cups"
 ),
-makeCard(
+generateCard(
     "THREE OF CUPS",
     "Celebration, friendship, joy, connection.",
     "Overindulgence, isolation, tension in friendships, imbalance.",
@@ -496,7 +494,7 @@ makeCard(
     SUITS.cups,
     "Three of Cups"
 ),
-makeCard(
+generateCard(
     "FOUR OF CUPS",
     "Discontent, withdrawal, introspection, missed opportunities.",
     "Renewed awareness, acceptance, re-engagement, clarity.",
@@ -505,7 +503,7 @@ makeCard(
     SUITS.cups,
     "Four of Cups"
 ),
-makeCard(
+generateCard(
     "FIVE OF CUPS",
     "Loss, grief, disappointment, focusing on the negative.",
     "Acceptance, healing, moving forward, finding perspective.",
@@ -514,7 +512,7 @@ makeCard(
     SUITS.cups,
     "Five of Cups"
 ),
-makeCard(
+generateCard(
     "SIX OF CUPS",
     "Nostalgia, memories, comfort, innocence.",
     "Being stuck in the past, moving on, growing up, letting go.",
@@ -523,7 +521,7 @@ makeCard(
     SUITS.cups,
     "Six of Cups"
 ),
-makeCard(
+generateCard(
     "SEVEN OF CUPS",
     "Options, illusion, confusion, imagination.",
     "Clarity, focus, making decisions, seeing truth.",
@@ -532,7 +530,7 @@ makeCard(
     SUITS.cups,
     "Seven of Cups"
 ),
-makeCard(
+generateCard(
     "EIGHT OF CUPS",
     "Leaving behind, seeking more, emotional distance, transition.",
     "Fear of change, avoidance, staying too long, hesitation.",
@@ -541,7 +539,7 @@ makeCard(
     SUITS.cups,
     "Eight of Cups"
 ),
-makeCard(
+generateCard(
     "NINE OF CUPS",
     "Satisfaction, fulfillment, comfort, emotional success.",
     "Discontent, overindulgence, lack of fulfillment, imbalance.",
@@ -550,7 +548,7 @@ makeCard(
     SUITS.cups,
     "Nine of Cups"
 ),
-makeCard(
+generateCard(
     "TEN OF CUPS",
     "Harmony, connection, happiness, emotional fulfillment.",
     "Tension, misalignment, conflict, disrupted harmony.",
@@ -559,7 +557,7 @@ makeCard(
     SUITS.cups,
     "Ten of Cups"
 ),
-makeCard(
+generateCard(
     "PAGE OF CUPS",
     "Curiosity, creativity, emotional openness, new ideas.",
     "Emotional immaturity, insecurity, creative block, avoidance.",
@@ -568,7 +566,7 @@ makeCard(
     SUITS.cups,
     "Page of Cups"
 ),
-makeCard(
+generateCard(
     "KNIGHT OF CUPS",
     "Romance, intention, emotional pursuit, creativity.",
     "Unrealistic expectations, moodiness, avoidance, inconsistency.",
@@ -577,7 +575,7 @@ makeCard(
     SUITS.cups,
     "Knight of Cups"
 ),
-makeCard(
+generateCard(
     "QUEEN OF CUPS ",
     "Compassion, intuition, emotional balance, care.",
     "Overwhelm, emotional instability, insecurity, withdrawal.",
@@ -586,7 +584,7 @@ makeCard(
     SUITS.cups,
     "Queen of Cups"
 ),
-makeCard(
+generateCard(
     "KING OF CUPS",
     "Emotional balance, maturity, stability, compassion.",
     "Emotional suppression, mood swings, imbalance, detachment.",
@@ -600,16 +598,16 @@ makeCard(
 // SWORDS
 
 
-makeCard(
+generateCard(
     "ACE OF SWORDS",
     "Clarity, truth, breakthrough, new ideas.",
     "Confusion, miscommunication, mental fog, dishonesty.",
-    "The Ace of Swords feels like clarity cutting through confusion. It's the moment where something finally makes sense, even if it's sharp or uncomfortable.",
+    "The Ace of Swords feels like clarity cutting through confusion. It's the moment where something finally generates sense, even if it's sharp or uncomfortable.",
     "A hand emerges from the clouds holding a sword upright. A crown rests on the blade, surrounded by laurel branches that suggest truth and victory. The sky behind it feels open and bright, like a sudden mental clearing.",
     SUITS.swords,
     "Ace of Swords"
 ),
-makeCard(
+generateCard(
     "TWO OF SWORDS",
     "Indecision, stalemate, avoidance, uncertainty.",
     "Clarity, decision-making, truth revealed, release.",
@@ -618,7 +616,7 @@ makeCard(
     SUITS.swords,
     "Two of Swords"
 ),
-makeCard(
+generateCard(
     "THREE OF SWORDS",
     "Heartbreak, sorrow, grief, emotional pain.",
     "Healing, recovery, forgiveness, emotional release.",
@@ -627,7 +625,7 @@ makeCard(
     SUITS.swords,
     "Three of Swords"
 ),
-makeCard(
+generateCard(
     "FOUR OF SWORDS",
     "Rest, recovery, solitude, reflection.",
     "Burnout, restlessness, avoidance, exhaustion.",
@@ -636,7 +634,7 @@ makeCard(
     SUITS.swords,
     "Four of Swords"
 ),
-makeCard(
+generateCard(
     "FIVE OF SWORDS",
     "Conflict, tension, hollow victory, disagreement.",
     "Resolution, compromise, moving on, reconciliation.",
@@ -645,7 +643,7 @@ makeCard(
     SUITS.swords,
     "Five of Swords"
 ),
-makeCard(
+generateCard(
     "SIX OF SWORDS",
     "Transition, moving on, healing, change.",
     "Resistance, stagnation, emotional baggage, difficulty moving forward.",
@@ -654,7 +652,7 @@ makeCard(
     SUITS.swords,
     "Six of Swords"
 ),
-makeCard(
+generateCard(
     "SEVEN OF SWORDS",
     "Strategy, secrecy, independence, caution.",
     "Exposure, dishonesty, guilt, consequences.",
@@ -663,7 +661,7 @@ makeCard(
     SUITS.swords,
     "Seven of Swords"
 ),
-makeCard(
+generateCard(
     "EIGHT OF SWORDS",
     "Restriction, fear, feeling stuck, mental blocks.",
     "Freedom, clarity, release, self-empowerment.",
@@ -672,7 +670,7 @@ makeCard(
     SUITS.swords,
     "Eight of Swords"
 ),
-makeCard(
+generateCard(
     "NINE OF SWORDS",
     "Anxiety, fear, worry, mental stress.",
     "Recovery, relief, facing fears, healing.",
@@ -681,7 +679,7 @@ makeCard(
     SUITS.swords,
     "Nine of Swords"
 ),
-makeCard(
+generateCard(
     "TEN OF SWORDS",
     "Endings, betrayal, collapse, finality.",
     "Recovery, rebuilding, acceptance, survival.",
@@ -690,7 +688,7 @@ makeCard(
     SUITS.swords,
     "Ten of Swords"
 ),
-makeCard(
+generateCard(
     "PAGE OF SWORDS",
     "Curiosity, ideas, learning, alertness.",
     "Gossip, confusion, impulsive thinking, lack of clarity.",
@@ -699,16 +697,16 @@ makeCard(
     SUITS.swords,
     "Page of Swords"
 ),
-makeCard(
+generateCard(
     "KNIGHT OF SWORDS",
     "Action, ambition, speed, determination.",
     "Recklessness, impulsiveness, burnout, aggression.",
     "The Knight of Swords moves fast and decisively. It reflects rushing toward goals or ideas without hesitation, sometimes without fully thinking them through.",
-    "A knight charges forward on a galloping horse, sword raised. The wind and motion in the scene make everything feel urgent and intense, like momentum that's hard to stop.",
+    "A knight charges forward on a galloping horse, sword raised. The wind and motion in the scene generate everything feel urgent and intense, like momentum that's hard to stop.",
     SUITS.swords,
     "Knight of Swords"
 ),
-makeCard(
+generateCard(
     "QUEEN OF SWORDS",
     "Clarity, truth, independence, perception.",
     "Coldness, harsh judgment, bitterness, miscommunication.",
@@ -717,7 +715,7 @@ makeCard(
     SUITS.swords,
     "Queen of Swords"
 ),
-makeCard(
+generateCard(
     "KING OF SWORDS",
     "Authority, logic, truth, structure.",
     "Manipulation, misuse of power, cold judgment, rigidity.",
@@ -731,7 +729,7 @@ makeCard(
 // PENTACLES
 
 
-makeCard(
+generateCard(
     "ACE OF PENTACLES",
     "New opportunity, stability, growth, prosperity.",
     "Missed opportunity, instability, lack of planning, setbacks.",
@@ -740,7 +738,7 @@ makeCard(
     SUITS.pentacles,
     "Ace of Pentacles"
 ),
-makeCard(
+generateCard(
     "TWO OF PENTACLES",
     "Balance, adaptability, multitasking, flexibility.",
     "Overwhelm, imbalance, disorganization, stress.",
@@ -749,7 +747,7 @@ makeCard(
     SUITS.pentacles,
     "Two of Pentacles"
 ),
-makeCard(
+generateCard(
     "THREE OF PENTACLES",
     "Teamwork, collaboration, skill-building, effort.",
     "Lack of teamwork, miscommunication, imbalance, poor planning.",
@@ -758,7 +756,7 @@ makeCard(
     SUITS.pentacles,
     "Three of Pentacles"
 ),
-makeCard(
+generateCard(
     "FOUR OF PENTACLES",
     "Security, control, stability, holding on.",
     "Letting go, generosity, insecurity, fear of loss.",
@@ -767,7 +765,7 @@ makeCard(
     SUITS.pentacles,
     "Four of Pentacles"
 ),
-makeCard(
+generateCard(
     "FIVE OF PENTACLES",
     "Struggle, hardship, isolation, financial difficulty.",
     "Recovery, support, improvement, relief.",
@@ -776,7 +774,7 @@ makeCard(
     SUITS.pentacles,
     "Five of Pentacles"
 ),
-makeCard(
+generateCard(
     "SIX OF PENTACLES",
     "Generosity, support, balance, sharing.",
     "Imbalance, debt, dependence, unfair exchange.",
@@ -785,7 +783,7 @@ makeCard(
     SUITS.pentacles,
     "Six of Pentacles"
 ),
-makeCard(
+generateCard(
     "SEVEN OF PENTACLES",
     "Patience, assessment, long-term growth, reflection.",
     "Impatience, frustration, lack of reward, wasted effort.",
@@ -794,7 +792,7 @@ makeCard(
     SUITS.pentacles,
     "Seven of Pentacles"
 ),
-makeCard(
+generateCard(
     "EIGHT OF PENTACLES",
     "Skill, dedication, craftsmanship, effort.",
     "Lack of focus, boredom, shortcuts, stagnation.",
@@ -803,7 +801,7 @@ makeCard(
     SUITS.pentacles,
     "Eight of Pentacles"
 ),
-makeCard(
+generateCard(
     "NINE OF PENTACLES",
     "Independence, luxury, self-sufficiency, comfort.",
     "Dependency, instability, overwork, financial strain.",
@@ -813,7 +811,7 @@ makeCard(
     "Nine of Pentacles",
 
 ),
-makeCard(
+generateCard(
     "TEN OF PENTACLES",
     "Legacy, stability, family, long-term success.",
     "Instability, conflict, financial issues, breakdown of structure.",
@@ -822,7 +820,7 @@ makeCard(
     SUITS.pentacles,
     "Ten of Pentacles"
 ),
-makeCard(
+generateCard(
     "PAGE OF PENTACLES",
     "Learning, opportunity, planning, growth.",
     "Lack of focus, procrastination, missed opportunity, immaturity.",
@@ -831,7 +829,7 @@ makeCard(
     SUITS.pentacles,
     "Page of Pentacles"
 ),
-makeCard(
+generateCard(
     "KNIGHT OF PENTACLES",
     "Hard work, patience, reliability, routine.",
     "Stagnation, laziness, rigidity, lack of progress.",
@@ -840,7 +838,7 @@ makeCard(
     SUITS.pentacles,
     "Knight of Pentacles"
 ),
-makeCard(
+generateCard(
     "QUEEN OF PENTACLES",
     "Nurturing, practicality, security, comfort.",
     "Neglect, imbalance, overwork, insecurity.",
@@ -849,7 +847,7 @@ makeCard(
     SUITS.pentacles,
     "Queen of Pentacles"
 ),
-makeCard(
+generateCard(
     "KING OF PENTACLES",
     "Success, stability, leadership, security.",
     "Greed, stubbornness, instability, misuse of resources.",
@@ -860,5 +858,5 @@ makeCard(
 ),
 ];
 
-
+// displays all the data held in displayCard function
 displayCard();

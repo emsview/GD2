@@ -3,9 +3,12 @@
     font-family: "Martian Mono", monospace;
     color: rgb(224, 15, 22);
 }
+/* 
+creates space at the bottom of the page before footer appears */
 .spacer {
   height: 300px;
 }
+
 
 body {
   min-height: 100vh;
@@ -37,6 +40,33 @@ body {
   }
 }
 
+
+/* TAROT 101 styling for the nav bar */
+#logo {
+    font-weight: 1000;
+    font-size: 20pt;
+    text-decoration: none;
+}
+
+
+#logo:hover {
+    cursor: pointer;
+}
+
+.underline-text {
+    text-decoration-color: transparent;
+    text-underline-offset: 10px;
+    transition-property: text-decoration-color;
+    transition-duration: 0.5s;
+}
+
+.underline-text:hover {
+    text-decoration-color:rgb(224, 15, 22);
+}
+
+
+
+/* list styling on INTRO page */
 .list ol {
   margin: 0 auto;        
   max-width: 600px;     
@@ -65,29 +95,7 @@ body {
 }
 
 
-#logo {
-    font-weight: 1000;
-    font-size: 20pt;
-    text-decoration: none;
-}
-
-
-#logo:hover {
-    cursor: pointer;
-}
-
-.underline-text {
-    text-decoration-color: transparent;
-    text-underline-offset: 10px;
-    transition-property: text-decoration-color;
-    transition-duration: 0.5s;
-}
-
-.underline-text:hover {
-    text-decoration-color:rgb(224, 15, 22);
-}
-
-/* Main Headers */
+/* Main headers */
 h2 {
     margin-top: 5vw;
     font-size: 70pt;
@@ -131,7 +139,7 @@ h3 a {
 
 
 
-/* CARD HEADER FOR NAME  */
+/* card name  */
 h4{
     /* padding: 1rem; */
     font-size: 60pt;
@@ -146,7 +154,7 @@ h4 {
 }
 }
 
-/* CARD SUBHEADS */
+/* card subheads */
 h5 {
     margin-top: 5%;
     margin-left: 5%;
@@ -161,7 +169,7 @@ h5 {
 }
 }
 
-/* RED INFO UNDER HEADERS */
+/* styling for tab info (red text under main headers) */
 h6 {
     text-align: center;
     font-size: 16pt;
@@ -228,7 +236,7 @@ p {
 }
 } 
 
-/* SUIT GRID on ALL CARDS*/
+/* Suit grid on ALL CARDS*/
 .all-cards {
   display: grid;
   margin: 0 5%;              
@@ -250,7 +258,7 @@ p {
   transform: scale(1.1);
   box-shadow: 0 10px 20px rgb(121, 160, 211);
 }
-/* SPACING BETWEEN CARD GRID on ALL CARDS*/
+/* Spacing between card grid on ALL CARDS*/
 .suit-section {
     margin: 10%;
 }
@@ -388,7 +396,7 @@ button:hover {
 }
 
 
-
+/* footer */
 footer { 
   padding: 20px;
   margin-bottom: 0%;
