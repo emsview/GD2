@@ -32,12 +32,11 @@ body {
     gap: 7rem;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 828px) {
   .navbar > ul {
-    font-size: 10pt;
     display: flex;
     list-style-type: none;
-    gap: 2rem;
+    gap: 4rem;
   }
 }
 
