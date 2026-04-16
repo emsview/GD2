@@ -339,9 +339,9 @@ h2.overlay-text {
   }
 } 
 
-
+/* suits icons on INTRO page */
 .suits-icon img {
-    width: 10%;
+    width: 12%;
     left: 20vw;
     position: absolute;
 }
