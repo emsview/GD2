@@ -34,6 +34,7 @@ function getCardOfTheDay() {
     return cards[seed % cards.length];
 }
 
+
 // QUIZ LOGIC
 function getRandomMeanings(correctMeaning, type) {
     const meanings = cards.map(card =>
@@ -116,7 +117,6 @@ function makeCard(name, upright, reversed, about, imagery, suit = "", fileKey) {
         about,
         imagery,
         suit,
-        fileKey,
         `Tarot Cards/${fileKey}.jpg`,
         `Tarot Cards Reversed/${fileKey} Reversed.jpg`
     );
@@ -810,7 +810,8 @@ makeCard(
     "The Nine of Pentacles reflects independence and comfort. It's about enjoying the results of your effort in a calm and self-sufficient way.",
     "A figure stands in a garden surrounded by pentacles and vines. A bird rests nearby, and everything feels still and abundant, like a space that has been carefully built and maintained.",
     SUITS.pentacles,
-    "Nine of Pentacles"
+    "Nine of Pentacles",
+
 ),
 makeCard(
     "TEN OF PENTACLES",
